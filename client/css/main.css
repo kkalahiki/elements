@@ -1,0 +1,36 @@
+
+
+body {
+	background: #eee;
+}
+
+.container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px;
+    padding-bottom: 20px;
+    background: #fff;
+    box-shadow: inset 0px 2px 2px 0px rgba(0,0,0,0.75);
+}
+
+ul.listOfTypes {
+	list-style-type: none;
+	padding: 0;
+}
+ul.listOfTypes li {
+	display: inline;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background: #eee;
+	padding: 5px;
+	margin: 6px 6px 0 0;
+	box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+label {
+	display: block;
+}
+
+.glyphicon {
+	margin-left: 10px;
+}

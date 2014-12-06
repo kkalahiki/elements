@@ -25,7 +25,7 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 		editItem.id = this.type._id;
 		var modalInstance = $modal.open({
 			templateUrl: 'myModalContent.html',
-			controller: 'ModalInstanceCtrl',
+			controller: 'layoutTypesModal',
 
 			resolve: {
 				item: function () {
@@ -69,10 +69,12 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 	}
 }]);
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, item) {
+app.controller('layoutTypesModal', function ($scope, $modalInstance, item) {
 
 	$scope.editTypeName = item.name;
-	$scope.editTypeDescription = item.description;
+	if (!item.description) {
+		$scope.editTypeDescription = '';
+	}
 	console.log(item);
 	$scope.closeModal = function () {
 		$modalInstance.dismiss();

@@ -25,7 +25,7 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 		editItem.id = this.type._id;
 		var modalInstance = $modal.open({
 			templateUrl: 'myModalContent.html',
-			controller: 'ModalInstanceCtrl',
+			controller: 'superTypeModal',
 
 			resolve: {
 				item: function () {
@@ -69,11 +69,13 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 	}
 }]);
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, item) {
+app.controller('superTypeModal', function ($scope, $modalInstance, item) {
 
 	$scope.editTypeName = item.name;
-	$scope.editTypeDescription = item.description;
-	console.log(item);
+	if (!item.description) {
+		$scope.editTypeDescription = '';
+		console.log('still here '+item);
+	}
 	$scope.closeModal = function () {
 		$modalInstance.dismiss();
 	};

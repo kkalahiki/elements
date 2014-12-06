@@ -1,7 +1,7 @@
 app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	var Type = $resource('/api/patterns/:id', {id: '@id'}, {
 		update: {
-	      method: 'PUT' // this method issues a PUT request
+	      method: 'PUT'
 	    }
 	});
 	
@@ -25,7 +25,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 		editItem.id = this.type._id;
 		var modalInstance = $modal.open({
 			templateUrl: 'myModalContent.html',
-			controller: 'ModalInstanceCtrl',
+			controller: 'patternsModal',
 
 			resolve: {
 				item: function () {
@@ -69,11 +69,12 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 	}
 }]);
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, item) {
+app.controller('patternsModal', function ($scope, $modalInstance, item) {
 
 	$scope.editTypeName = item.name;
-	$scope.editTypeDescription = item.description;
-	console.log(item);
+	if (!item.description) {
+		$scope.editTypeDescription = '';
+	}
 	$scope.closeModal = function () {
 		$modalInstance.dismiss();
 	};

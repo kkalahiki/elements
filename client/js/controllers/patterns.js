@@ -7,7 +7,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 
 	//Get all possible child types
 	var childrenPossible = {};
-	var patterns = $resource('/api/patterns/');
+	var patterns = $resource('/api/components/');
 	patterns.query(function (results) {
 		childrenPossible = results;
 	});
@@ -28,8 +28,8 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 	$scope.inEdit = function () {
 		var editItem = this.type;
 		var modalInstance = $modal.open({
-			templateUrl: '/views/templates/layoutTypesModal.html',
-			controller: 'layoutTypeModal',
+			templateUrl: '/views/templates/patternsModal.html',
+			controller: 'patternsModal',
 			resolve: {
 				item: function () {
 					return editItem;
@@ -76,7 +76,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 	}
 }]);
 
-app.controller('layoutTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
+app.controller('patternsModal', function ($scope, $modalInstance, item, childrenPossible) {
 	$scope.childrenPossible = childrenPossible;
 
 	$scope.checkIfChild = function (id) {

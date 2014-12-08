@@ -1,4 +1,6 @@
 app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
+	$scope.predicate = 'name';
+
 	var Type = $resource('/api/supertypes/:id', {id: '@id'}, {
 		update: {
 	      method: 'PUT' // this method issues a PUT request
@@ -77,6 +79,7 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 }]);
 
 app.controller('superTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
+	$scope.predicate = 'name';
 	$scope.childrenPossible = childrenPossible;
 
 	$scope.checkIfChild = function (id) {

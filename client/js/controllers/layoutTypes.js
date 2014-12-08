@@ -1,4 +1,5 @@
 app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
+	$scope.predicate = 'name';
 	var Type = $resource('/api/types/:id', {id: '@id'}, {
 		update: {
 	      method: 'PUT' // this method issues a PUT request
@@ -77,6 +78,7 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 }]);
 
 app.controller('layoutTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
+	$scope.predicate = 'name';
 	$scope.childrenPossible = childrenPossible;
 
 	$scope.checkIfChild = function (id) {

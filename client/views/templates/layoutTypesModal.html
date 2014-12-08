@@ -9,7 +9,7 @@
 		<legend>Children</legend>
 		<div class="childrenContainer">
 			<ul class="listOfTypes">
-				<li ng-repeat="child in childrenPossible" ng-class="{checked:checkIfChild(child._id)}" class="col-xs-12 col-sm-12 col-md-5 col-lg-5"><label for="{{child._id}}">{{child.name}} <input type="checkbox" class="childCheckbox" id="{{child._id}}" name="{{child._id}}" ng-checked="checkIfChild(child._id)" ng-click="setClickstyle($event)" /></label></li>
+				<li ng-repeat="child in childrenPossible | orderBy:predicate" ng-class="{checked:checkIfChild(child._id)}" class="col-xs-12 col-sm-12 col-md-5 col-lg-5"><label for="{{child._id}}">{{child.name}} <input type="checkbox" class="childCheckbox" id="{{child._id}}" name="{{child._id}}" ng-checked="checkIfChild(child._id)" ng-click="setClickstyle($event)" /></label></li>
 			</ul>
 		</div>
 	</fieldset>

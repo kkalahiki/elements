@@ -16,7 +16,8 @@ module.exports.read = function (req, res) {
 module.exports.update = function (req, res) {
 	var params = {
 		'name': req.body.name,
-		'description': req.body.description
+		'description': req.body.description,
+		'children': req.body.children
 	};
 	//Type.findOneAndUpdate({ _id : req.params[0] }, {'name': req.body.name}, {}, function (err, result) {
 	Type.layoutTypes.findOneAndUpdate({ _id : req.params[0] }, params, {}, function (err, result) {

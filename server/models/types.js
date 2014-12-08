@@ -18,7 +18,8 @@ module.exports.layoutSuperTypes = mongoose.model('layoutSuperTypes', {
 
 module.exports.patterns = mongoose.model('patterns', {
 	name: String,
-	description: String
+	description: String,
+	children: [childSchema]
 });
 
 module.exports.components = mongoose.model('components', {

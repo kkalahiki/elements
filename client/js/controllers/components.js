@@ -4,6 +4,13 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 	      method: 'PUT' // this method issues a PUT request
 	    }
 	});
+
+	//Get all possible child types
+	var childrenPossible = {};
+	var patterns = $resource('/api/patterns/');
+	patterns.query(function (results) {
+		childrenPossible = results;
+	});
 	
 	Type.query(function (results) {
 		$scope.types = results;
@@ -19,17 +26,16 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 	}
 
 	$scope.inEdit = function () {
-		var editItem = {};
-		editItem.name = this.type.name;
-		editItem.description = this.type.description;
-		editItem.id = this.type._id;
+		var editItem = this.type;
 		var modalInstance = $modal.open({
-			templateUrl: 'myModalContent.html',
-			controller: 'componentsModal',
-
+			templateUrl: '/views/templates/layoutTypesModal.html',
+			controller: 'layoutTypeModal',
 			resolve: {
 				item: function () {
 					return editItem;
+				},
+				childrenPossible: function () {
+					return childrenPossible;
 				}
 			}
 		});
@@ -38,7 +44,8 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 			var type = new Type();
 			type.name = editItem.name;
 			type.description = editItem.description;
-			type.$update({'id': editItem.id}, function (result) {
+			type.children = editItem.children;
+			type.$update({'id': editItem._id}, function (result) {
 				Type.query(function (results) {
 					$scope.types = results;
 				});
@@ -69,23 +76,41 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 	}
 }]);
 
-app.controller('componentsModal', function ($scope, $modalInstance, item) {
+app.controller('layoutTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
+	$scope.childrenPossible = childrenPossible;
+
+	$scope.checkIfChild = function (id) {
+		for (var i = item.children.length - 1; i >= 0; i--) {
+			if (item.children[i].id === id) {
+				return true
+			}
+		};
+	}
 
 	$scope.editTypeName = item.name;
 	if (!item.description) {
 		$scope.editTypeDescription = '';
 	}
-	console.log(item);
+	else {
+		$scope.editTypeDescription = item.description;	
+	}
 	$scope.closeModal = function () {
 		$modalInstance.dismiss();
 	};
 
+	var getChecked = function () {
+		var allChildren = [];
+		angular.forEach(document.getElementsByClassName('childCheckbox'), function (val, key, obj) {
+			if (val.checked) { allChildren.push({'id':val.id}) }
+		}, $scope);
+		return allChildren;
+	}
+
 	$scope.saveEdit = function () {
-		var editItem = {};
-		editItem.name = $scope.editTypeName;
-		editItem.description = $scope.editTypeDescription;
-		editItem.id = item.id;
-		$modalInstance.close(editItem);
+		item.name = $scope.editTypeName;
+		item.description = $scope.editTypeDescription;
+		item.children = getChecked();
+		$modalInstance.close(item);
 	}
 
 });

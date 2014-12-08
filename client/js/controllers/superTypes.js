@@ -91,6 +91,9 @@ app.controller('superTypeModal', function ($scope, $modalInstance, item, childre
 	if (!item.description) {
 		$scope.editTypeDescription = '';
 	}
+	else {
+		$scope.editTypeDescription = item.description;	
+	}
 	$scope.closeModal = function () {
 		$modalInstance.dismiss();
 	};

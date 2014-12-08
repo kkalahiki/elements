@@ -26,6 +26,9 @@ ul.listOfTypes li {
 	margin: 6px 6px 0 0;
 	box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
 }
+ul.listOfTypes li.checked {
+	background: #ccc;
+}
 
 ul.elNav li {
 	display: inline;

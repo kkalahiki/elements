@@ -98,6 +98,10 @@ app.controller('componentsModal', function ($scope, $modalInstance, item, childr
 		$modalInstance.dismiss();
 	};
 
+	$scope.setClickstyle = function ($event) {
+		($event.target.checked ? angular.element($event.target).parent().parent().addClass('checked') : angular.element($event.target).parent().parent().removeClass('checked'));
+	}
+
 	var getChecked = function () {
 		var allChildren = [];
 		angular.forEach(document.getElementsByClassName('childCheckbox'), function (val, key, obj) {

@@ -9,7 +9,7 @@ var express 				= require('express'),
 	patternsController 	= require('./server/controllers/patterns.js'),
 	componentsController 	= require('./server/controllers/components.js');;
 
-mongoose.connect('mongodb://162.243.150.202:27017/elements');
+mongoose.connect('mongodb://localhost:27017/elements');
 
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/client/views/index.html');

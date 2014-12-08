@@ -84,7 +84,7 @@ app.controller('patternsModal', function ($scope, $modalInstance, item, children
 
 	$scope.checkIfChild = function (id) {
 		for (var i = item.children.length - 1; i >= 0; i--) {
-			if (item.children[i].id === id) {
+			if (item.children[i] === id) {
 				return true
 			}
 		};
@@ -108,7 +108,7 @@ app.controller('patternsModal', function ($scope, $modalInstance, item, children
 	var getChecked = function () {
 		var allChildren = [];
 		angular.forEach(document.getElementsByClassName('childCheckbox'), function (val, key, obj) {
-			if (val.checked) { allChildren.push({'id':val.id}) }
+			if (val.checked) { allChildren.push(val.id) }
 		}, $scope);
 		return allChildren;
 	}

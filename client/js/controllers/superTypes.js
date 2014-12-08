@@ -56,25 +56,26 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 
 	}
 
-	
-	$scope.updateType = function () {
-		var type = new Type();
-		type.name = $scope.editTypeName;
-		type.description = $scope.editTypeDescription;
-		type.$update({'id': $scope.editingFieldId}, function (result) {
-			Type.query(function (results) {
-				$scope.types = results;
-			});
-		});
-	}
-
 	$scope.deleteItem = function () {
-		var type = new Type();
-		type.$delete({'id': this.type._id}, function (result) {
-			Type.query(function (results) {
-				$scope.types = results;
-			});
+		var item = this.type;
+		var modalInstance = $modal.open({
+			templateUrl: '/views/templates/deleteDialogModal.html',
+			controller: 'deleteDialogModal',
+			resolve: {
+				item: function () {
+					return item;
+				}
+			}
 		});
+
+		modalInstance.result.then(function (item) {
+			var type = new Type();
+			type.$delete({'id': item._id}, function (result) {
+				Type.query(function (results) {
+					$scope.types = results;
+				});
+			});
+	    });
 	}
 }]);
 
@@ -117,6 +118,18 @@ app.controller('superTypeModal', function ($scope, $modalInstance, item, childre
 		item.name = $scope.editTypeName;
 		item.description = $scope.editTypeDescription;
 		item.children = getChecked();
+		$modalInstance.close(item);
+	}
+
+});
+
+app.controller('deleteDialogModal', function ($scope, $modalInstance, item) {
+	console.log(item);
+	$scope.closeModal = function () {
+		$modalInstance.dismiss();
+	};
+
+	$scope.doDelete = function () {
 		$modalInstance.close(item);
 	}
 

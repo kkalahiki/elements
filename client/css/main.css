@@ -40,6 +40,15 @@ label {
 	display: block;
 }
 
+.modal-body input {
+	margin-bottom: 10px;
+}
+
+.modal-body textarea {
+	height: 70px;
+	width: 50%;
+}
+
 .glyphicon {
 	margin-left: 10px;
 }

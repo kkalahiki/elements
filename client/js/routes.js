@@ -1,11 +1,11 @@
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-    when('/superTypes', {
+    when('/categories', {
       templateUrl: '/views/templates/superTypes.html',
       controller: 'superTypes'
     }).
-    when('/layoutTypes', {
+    when('/types', {
       templateUrl: '/views/templates/layoutTypes.html',
       controller: 'layoutTypes'
     }).
@@ -17,8 +17,12 @@ app.config(['$routeProvider',
       templateUrl: '/views/templates/components.html',
       controller: 'components'
     }).
+    when('/uielements', {
+      templateUrl: '/views/templates/uielements.html',
+      controller: 'uielements'
+    }).
     otherwise({
-      redirectTo: '/superTypes'
+      redirectTo: '/categories'
     });
   }
 ]);

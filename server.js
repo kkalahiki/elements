@@ -17,7 +17,7 @@ app.get('/superTypes', function (req, res) {res.sendFile(__dirname + '/client/vi
 app.get('/layoutTypes', function (req, res) {res.sendFile(__dirname + '/client/views/layoutTypes.html')});
 app.get('/patterns', function (req, res) {res.sendFile(__dirname + '/client/views/patterns.html')});
 app.get('/components', function (req, res) {res.sendFile(__dirname + '/client/views/components.html')});
-
+app.get('/uielements', function (req, res) {res.sendFile(__dirname + '/client/views/components.html')});
 
 // Elements API
 app.get('/api/elements', jsonParser, function (req, res) { elementsController.read(req, res, 'all') });
@@ -39,6 +39,10 @@ app.get('/api/components', jsonParser, function (req, res) { elementsController.
 // Pattern element
 app.post('/api/patterns', jsonParser, function (req, res) { elementsController.create(req, res, 'patterns') });
 app.get('/api/patterns', jsonParser, function (req, res) { elementsController.read(req, res, 'patterns') });
+
+// UI element
+app.post('/api/uielements', jsonParser, function (req, res) { elementsController.create(req, res, 'uielements') });
+app.get('/api/uielements', jsonParser, function (req, res) { elementsController.read(req, res, 'uielements') });
 
 /*
 app.get('/api/types', jsonParser, layoutTypesController.read);

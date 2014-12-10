@@ -1,8 +1,10 @@
 app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	$scope.predicate = 'name';
+	
 	var Type = $resource('/api/patterns/:id', {id: '@id'}, {
 		update: {
-	      method: 'PUT' // this method issues a PUT request
+	      method: 'PUT', // this method issues a PUT request
+	      url: '/api/elements/:id'
 	    }
 	});
 
@@ -60,6 +62,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 		var modalInstance = $modal.open({
 			templateUrl: '/views/templates/deleteDialogModal.html',
 			controller: 'deleteDialogModal',
+			size: 'large',
 			resolve: {
 				item: function () {
 					return item;

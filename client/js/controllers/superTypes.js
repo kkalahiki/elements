@@ -3,7 +3,8 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 
 	var Type = $resource('/api/supertypes/:id', {id: '@id'}, {
 		update: {
-	      method: 'PUT' // this method issues a PUT request
+	      method: 'PUT', // this method issues a PUT request,
+	      url: '/api/elements/:id'
 	    }
 	});
 

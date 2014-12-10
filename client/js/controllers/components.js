@@ -2,16 +2,17 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 	$scope.predicate = 'name';
 	var Type = $resource('/api/components/:id', {id: '@id'}, {
 		update: {
-	      method: 'PUT' // this method issues a PUT request
+	      method: 'PUT', // this method issues a PUT request
+	      url: '/api/elements/:id'
 	    }
 	});
 
 	//Get all possible child types
-	var childrenPossible = {};
+	/*var childrenPossible = {};
 	var patterns = $resource('/api/standards/');
 	patterns.query(function (results) {
 		childrenPossible = results;
-	});
+	});*/
 	
 	Type.query(function (results) {
 		$scope.types = results;
@@ -34,10 +35,10 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 			resolve: {
 				item: function () {
 					return editItem;
-				},
+				}/*,
 				childrenPossible: function () {
 					return childrenPossible;
-				}
+				}*/
 			}
 		});
 
@@ -45,7 +46,7 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 			var type = new Type();
 			type.name = editItem.name;
 			type.description = editItem.description;
-			type.children = editItem.children;
+			//type.children = editItem.children;
 			type.$update({'id': editItem._id}, function (result) {
 				Type.query(function (results) {
 					$scope.types = results;
@@ -78,9 +79,10 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 	}
 }]);
 
-app.controller('componentsModal', function ($scope, $modalInstance, item, childrenPossible) {
+//app.controller('componentsModal', function ($scope, $modalInstance, item, childrenPossible) {
+app.controller('componentsModal', function ($scope, $modalInstance, item) {
 	$scope.predicate = 'name';
-	$scope.childrenPossible = childrenPossible;
+	//$scope.childrenPossible = childrenPossible;
 
 	$scope.checkIfChild = function (id) {
 		for (var i = item.children.length - 1; i >= 0; i--) {
@@ -101,7 +103,7 @@ app.controller('componentsModal', function ($scope, $modalInstance, item, childr
 		$modalInstance.dismiss();
 	};
 
-	$scope.setClickstyle = function ($event) {
+	/*$scope.setClickstyle = function ($event) {
 		($event.target.checked ? angular.element($event.target).parent().parent().addClass('checked') : angular.element($event.target).parent().parent().removeClass('checked'));
 	}
 
@@ -111,12 +113,12 @@ app.controller('componentsModal', function ($scope, $modalInstance, item, childr
 			if (val.checked) { allChildren.push({'id':val.id}) }
 		}, $scope);
 		return allChildren;
-	}
+	}*/
 
 	$scope.saveEdit = function () {
 		item.name = $scope.editTypeName;
 		item.description = $scope.editTypeDescription;
-		item.children = getChecked();
+		//item.children = getChecked();
 		$modalInstance.close(item);
 	}
 

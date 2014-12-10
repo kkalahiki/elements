@@ -9,8 +9,8 @@ module.exports.create = function (req, res, type) {
 	});
 }
 
-module.exports.read = function (req, res) {
-	Type.elements.find({}, function (err, results) {
+module.exports.read = function (req, res, type) {
+	Type.elements.find({'type': type}, function (err, results) {
 		res.json(results);
 	});
 }

@@ -4,6 +4,17 @@ var mongoose = require('mongoose');
 var childSchema = new Schema({ id: String });
 var parentSchema = new Schema({ id: String });*/
 
+module.exports.elements = mongoose.model('elements', {
+	name: String,
+	type: String,
+	description: String,
+	examples: String,
+	parents: [],
+	children: [],
+	siblings: []
+});
+
+/*
 module.exports.layoutTypes = mongoose.model('layoutTypes', {
 	name: String,
 	description: String,
@@ -32,3 +43,4 @@ module.exports.standards = mongoose.model('standards', {
 	name: String,
 	description: String
 });
+*/

@@ -4,6 +4,10 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 		update: {
 	      method: 'PUT', // this method issues a PUT request
 	      url: '/api/elements/:id'
+	    },
+	    remove: {
+	      method: 'DELETE', // this method issues a PUT request
+	      url: '/api/elements/:id'
 	    }
 	});
 
@@ -70,7 +74,7 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 
 		modalInstance.result.then(function (item) {
 			var type = new Type();
-			type.$delete({'id': item._id}, function (result) {
+			type.$remove({'id': item._id}, function (result) {
 				Type.query(function (results) {
 					$scope.types = results;
 				});

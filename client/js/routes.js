@@ -18,7 +18,7 @@ app.config(['$routeProvider',
       controller: 'components'
     }).
     when('/uielements', {
-      templateUrl: '/views/templates/uielements.html',
+      templateUrl: '/views/templates/uiElements.html',
       controller: 'uielements'
     }).
     otherwise({

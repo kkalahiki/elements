@@ -1,6 +1,6 @@
 app.controller('components', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	$scope.predicate = 'name';
-	var Type = $resource('/api/types/:id', {id: '@id'}, {
+	var Type = $resource('/api/components/:id', {id: '@id'}, {
 		update: {
 	      method: 'PUT', // this method issues a PUT request
 	      url: '/api/elements/:id'

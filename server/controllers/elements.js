@@ -1,18 +1,25 @@
 var Type = require('../models/types.js');
 
-module.exports.create = function (req, res, type) {
+module.exports.create = function (req, res, element) {
 	var newType = req.body;
-	newType.type = type;
+	newType.type = element;
 	var type = new Type.elements(req.body);
 	type.save(function (err, result) {
 		res.json(result);
 	});
 }
 
-module.exports.read = function (req, res, type) {
-	Type.elements.find({'type': type}, function (err, results) {
-		res.json(results);
-	});
+module.exports.read = function (req, res, element) {
+	if (element === 'all') {
+		Type.elements.find(function (err, results) {
+			res.json(results);
+		});
+	}
+	else {
+		Type.elements.find({'type': element}, function (err, results) {
+			res.json(results);
+		});
+	}
 }
 
 module.exports.update = function (req, res) {

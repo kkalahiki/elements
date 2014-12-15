@@ -17,7 +17,7 @@ app.get('/superTypes', function (req, res) {res.sendFile(__dirname + '/client/vi
 app.get('/layoutTypes', function (req, res) {res.sendFile(__dirname + '/client/views/layoutTypes.html')});
 app.get('/patterns', function (req, res) {res.sendFile(__dirname + '/client/views/patterns.html')});
 app.get('/components', function (req, res) {res.sendFile(__dirname + '/client/views/components.html')});
-app.get('/uielements', function (req, res) {res.sendFile(__dirname + '/client/views/components.html')});
+app.get('/uielements', function (req, res) {res.sendFile(__dirname + '/client/views/uielements.html')});
 
 // Elements API
 app.get('/api/elements', jsonParser, function (req, res) { elementsController.read(req, res, 'all') });

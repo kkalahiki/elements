@@ -5,7 +5,9 @@ module.exports.create = function (req, res, element) {
 	newType.type = element;
 	var type = new Type.elements(req.body);
 	type.save(function (err, result) {
-		res.json(result);
+		Type.elements.find({'type': element}, function (err, results) {
+			res.json({'resultSet': results});
+		});
 	});
 }
 
@@ -31,13 +33,19 @@ module.exports.update = function (req, res) {
 	Type.elements.findOneAndUpdate({ _id : req.params[0] }, params, {}, function (err, result) {
 		if (err) {console.log(err)}
 		else {
-			res.json(result);
+			//res.json(result);
+			Type.elements.find({'type': result.type}, function (err, results) {
+				res.json({'resultSet': results});
+			});
 		}
 	});
 }
 
 module.exports.delete = function (req, res) {
 	Type.elements.findOneAndRemove({ _id : req.params[0] }, function (err, result) {
-		res.json(result);
+		//res.json(result);
+		Type.elements.find({'type': result.type}, function (err, results) {
+			res.json({'resultSet': results});
+		});
 	});
 }

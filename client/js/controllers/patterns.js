@@ -28,7 +28,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 		var type = new Type();
 		type.name = $scope.newType;
 		type.$save(function (result) {
-			$scope.types.push(result);
+			$scope.types = result.resultSet;
 			$scope.newType = '';
 		});
 	}
@@ -54,9 +54,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 			type.description = editItem.description;
 			type.children = editItem.children;
 			type.$update({'id': editItem._id}, function (result) {
-				Type.query(function (results) {
-					$scope.types = results;
-				});
+				$scope.types = result.resultSet;
 			});
 	    });
 
@@ -78,9 +76,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 		modalInstance.result.then(function (item) {
 			var type = new Type();
 			type.$remove({'id': item._id}, function (result) {
-				Type.query(function (results) {
-					$scope.types = results;
-				});
+				$scope.types = result.resultSet;
 			});
 	    });
 	}

@@ -1,5 +1,7 @@
 app.controller('uielements', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	$scope.predicate = 'name';
+	$scope.title = 'UI Elements';
+
 	var Type = $resource('/api/uielements/:id', {id: '@id'}, {
 		update: {
 	      method: 'PUT', // this method issues a PUT request
@@ -34,7 +36,7 @@ app.controller('uielements', ['$scope', '$resource', '$modal', function($scope, 
 	$scope.inEdit = function () {
 		var editItem = this.type;
 		var modalInstance = $modal.open({
-			templateUrl: '/views/templates/componentsModal.html',
+			templateUrl: '/views/templates/elementsModal.html',
 			controller: 'componentsModal',
 			resolve: {
 				item: function () {
@@ -86,6 +88,7 @@ app.controller('uielements', ['$scope', '$resource', '$modal', function($scope, 
 //app.controller('componentsModal', function ($scope, $modalInstance, item, childrenPossible) {
 app.controller('componentsModal', function ($scope, $modalInstance, item) {
 	$scope.predicate = 'name';
+	$scope.title = 'UI Elements';
 	//$scope.childrenPossible = childrenPossible;
 
 	$scope.checkIfChild = function (id) {

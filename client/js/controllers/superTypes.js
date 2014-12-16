@@ -1,5 +1,6 @@
 app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	$scope.predicate = 'name';
+	$scope.title = 'Categories';
 
 	var Type = $resource('/api/supertypes/:id', {id: '@id'}, {
 		update: {
@@ -35,7 +36,7 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 	$scope.inEdit = function () {
 		var editItem = this.type;
 		var modalInstance = $modal.open({
-			templateUrl: '/views/templates/superTypesModal.html',
+			templateUrl: '/views/templates/elementsModal.html',
 			controller: 'superTypeModal',
 			resolve: {
 				item: function () {
@@ -87,6 +88,7 @@ app.controller('superTypes', ['$scope', '$resource', '$modal', function($scope, 
 app.controller('superTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
 	$scope.predicate = 'name';
 	$scope.childrenPossible = childrenPossible;
+	$scope.title = 'Categories';
 
 	$scope.checkIfChild = function (id) {
 		for (var i = item.children.length - 1; i >= 0; i--) {

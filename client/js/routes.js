@@ -2,23 +2,23 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
     when('/categories', {
-      templateUrl: '/views/templates/superTypes.html',
+      templateUrl: '/views/templates/elements.html',
       controller: 'superTypes'
     }).
     when('/types', {
-      templateUrl: '/views/templates/layoutTypes.html',
+      templateUrl: '/views/templates/elements.html',
       controller: 'layoutTypes'
     }).
     when('/patterns', {
-      templateUrl: '/views/templates/patterns.html',
+      templateUrl: '/views/templates/elements.html',
       controller: 'patterns'
     }).
     when('/components', {
-      templateUrl: '/views/templates/components.html',
+      templateUrl: '/views/templates/elements.html',
       controller: 'components'
     }).
     when('/uielements', {
-      templateUrl: '/views/templates/uiElements.html',
+      templateUrl: '/views/templates/elements.html',
       controller: 'uielements'
     }).
     otherwise({

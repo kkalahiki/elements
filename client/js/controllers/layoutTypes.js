@@ -1,5 +1,7 @@
 app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	$scope.predicate = 'name';
+	$scope.title = 'Types';
+
 	var Type = $resource('/api/types/:id', {id: '@id'}, {
 		update: {
 	      method: 'PUT', // this method issues a PUT request
@@ -34,7 +36,7 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 	$scope.inEdit = function () {
 		var editItem = this.type;
 		var modalInstance = $modal.open({
-			templateUrl: '/views/templates/layoutTypesModal.html',
+			templateUrl: '/views/templates/elementsModal.html',
 			controller: 'layoutTypeModal',
 			resolve: {
 				item: function () {
@@ -86,6 +88,7 @@ app.controller('layoutTypes', ['$scope', '$resource', '$modal', function($scope,
 app.controller('layoutTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
 	$scope.predicate = 'name';
 	$scope.childrenPossible = childrenPossible;
+	$scope.title = 'Types';
 
 	$scope.checkIfChild = function (id) {
 		for (var i = item.children.length - 1; i >= 0; i--) {

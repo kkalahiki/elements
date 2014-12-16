@@ -1,6 +1,7 @@
 app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $resource, $modal){
 	$scope.predicate = 'name';
-	
+	$scope.title = 'Patterns';
+
 	var Type = $resource('/api/patterns/:id', {id: '@id'}, {
 		update: {
 	      method: 'PUT', // this method issues a PUT request
@@ -35,7 +36,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 	$scope.inEdit = function () {
 		var editItem = this.type;
 		var modalInstance = $modal.open({
-			templateUrl: '/views/templates/patternsModal.html',
+			templateUrl: '/views/templates/elementsModal.html',
 			controller: 'patternsModal',
 			resolve: {
 				item: function () {
@@ -88,6 +89,7 @@ app.controller('patterns', ['$scope', '$resource', '$modal', function($scope, $r
 app.controller('patternsModal', function ($scope, $modalInstance, item, childrenPossible) {
 	$scope.predicate = 'name';
 	$scope.childrenPossible = childrenPossible;
+	$scope.title = 'Patterns';
 
 	$scope.checkIfChild = function (id) {
 		for (var i = item.children.length - 1; i >= 0; i--) {

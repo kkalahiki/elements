@@ -37,7 +37,7 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 		var editItem = this.type;
 		var modalInstance = $modal.open({
 			templateUrl: '/views/templates/elementsModal.html',
-			controller: 'layoutTypeModal',
+			controller: 'componentsModal',
 			resolve: {
 				item: function () {
 					return editItem;
@@ -81,7 +81,7 @@ app.controller('components', ['$scope', '$resource', '$modal', function($scope, 
 	}
 }]);
 
-app.controller('layoutTypeModal', function ($scope, $modalInstance, item, childrenPossible) {
+app.controller('componentsModal', function ($scope, $modalInstance, item, childrenPossible) {
 	$scope.predicate = 'name';
 	$scope.childrenPossible = childrenPossible;
 	$scope.title = 'Components';

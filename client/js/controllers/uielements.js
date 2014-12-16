@@ -37,7 +37,7 @@ app.controller('uielements', ['$scope', '$resource', '$modal', function($scope, 
 		var editItem = this.type;
 		var modalInstance = $modal.open({
 			templateUrl: '/views/templates/elementsModal.html',
-			controller: 'componentsModal',
+			controller: 'uiElementsModal',
 			resolve: {
 				item: function () {
 					return editItem;
@@ -82,7 +82,7 @@ app.controller('uielements', ['$scope', '$resource', '$modal', function($scope, 
 }]);
 
 //app.controller('componentsModal', function ($scope, $modalInstance, item, childrenPossible) {
-app.controller('componentsModal', function ($scope, $modalInstance, item) {
+app.controller('uiElementsModal', function ($scope, $modalInstance, item) {
 	$scope.predicate = 'name';
 	$scope.title = 'UI Elements';
 	//$scope.childrenPossible = childrenPossible;

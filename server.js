@@ -42,5 +42,5 @@ app.use('/thirdparty', express.static(__dirname + '/client/thirdparty'));
 app.use('/bower_components', express.static(__dirname + '/client/bower_components'));
 
 app.listen(port, function () {
-	console.log('listening')
+	console.log('listening: '+port);
 })

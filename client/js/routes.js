@@ -21,6 +21,10 @@ app.config(['$routeProvider',
       templateUrl: '/views/templates/elements.html',
       controller: 'uielements'
     }).
+    when('/visual', {
+      templateUrl: '/views/templates/visual.html',
+      controller: 'visual'
+    }).
     otherwise({
       redirectTo: '/categories'
     });

@@ -19,24 +19,23 @@ var circleMaker = function (childrenCount, name, children) {
   var circle = new createjs.Shape();
   var text = new createjs.Text();
   
+  var stroke = 8;
   var radius = radiusMaker(childrenCount);
   var coords = locaterAtor();
   var w = stage.canvas.width;
   var h = stage.canvas.height;
-  if ((coords.x + radius*2) > w) {coords.x = w-(radius*2)}
-  if ((coords.x - radius) < 0) {coords.x = radius}
-  if ((coords.y + radius*2) > h) {coords.y = h-(radius*2)}
-  if ((coords.y - radius) < 0) {coords.y = radius}
+  if ((coords.x + radius + stroke) > w) {coords.x = w-(radius + stroke)}
+  if ((coords.x - radius + stroke) < 0) {coords.x = radius + stroke}
+  if ((coords.y + radius + stroke) > h) {coords.y = h-(radius + stroke)}
+  if ((coords.y - radius + stroke) < 0) {coords.y = radius + stroke}
 
-  console.log(coords.x+', '+coords.y+', '+w+', '+h);
+  /*console.log(coords.x+', '+coords.y+', '+w+', '+h);*/
   container.x = coords.x;
   container.y = coords.y;
   container.setBounds(0, 0, radius, radius);
 
-  circle.graphics.s("#000").f("#ccc").dc(0, 0, radius);
-  /*circle.x = 100;
-  circle.y = 100;*/
-
+  circle.graphics.ss(stroke,"round").s("#999").f("#ccc").dc(0, 0, radius);
+  
   text.set({
     text: name
   });
@@ -56,7 +55,12 @@ var circleMaker = function (childrenCount, name, children) {
   });
 }
 
-circleMaker(20, 'Whatevs');
-circleMaker(2, 'Howzit');
+var elements = $resource('/api/elements/');
+elements.query(function (results) {
+  angular.forEach(results, function(value, key) {
+    if (value.type === 'supertypes') { circleMaker(value.children.length, value.name) }
+  });
+});
+
 
 }]);
